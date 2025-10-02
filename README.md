@@ -1,5 +1,5 @@
 # Load cell Probe
-Current config is for BTT-EBB42 v1.2 
+Current config is for BTT-EBB42 v1.2 using I2C port of EBB42 board.
 
 dout_pin: EBB42:PB3
 
