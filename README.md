@@ -1,3 +1,5 @@
+Using 1kg load cell with hx711 24 bits ADC
+
 # Load cell Probe
 Current config is for BTT-EBB42 v1.2 using I2C port of EBB42 board.
 
