@@ -1,4 +1,4 @@
-Using 1kg load cell with hx711 24 bits ADC
+# Using 1kg load cell with hx711 24 bits ADC, channel A+A-
 
 # Load cell Probe
 Current config is for BTT-EBB42 v1.2 using I2C port of EBB42 board.
@@ -7,29 +7,64 @@ dout_pin: EBB42:PB3
 
 sclk_pin: EBB42:PB4
 <img width="1153" height="948" alt="image" src="https://github.com/user-attachments/assets/ae3c9dec-a9da-458b-92ee-21412048698e" />
+        
+        [load_cell_probe]
+        sensor_type: hx711
+        dout_pin: EBB42:PB3
+        sclk_pin: EBB42:PB4
+        gain: A-128
+        sample_rate: 80
+        counts_per_gram = 8945.79000
+        reference_tare_counts = -481936
+        #reference_tare_counts:
+        #sensor_orientation:
+        #   These parameters must be configured before the probe will operate.
+        #   See the [load_cell] section for further details.
+        force_safety_limit: 700
+        #   The safe limit for probing force relative to the reference_tare_counts on
+        #   the load_cell. The default is +/-2Kg.
+        trigger_force: 75
+        #   The force that the probe will trigger at. 75g is the default.
+        #drift_filter_cutoff_frequency: 0.8
+        #   Enable optional continuous taring while homing & probing to reject drift.
+        #   The value is a frequency, in Hz, below which drift will be ignored. This
+        #   option requires the SciPy library. Default: None
+        #drift_filter_delay: 2
+        #   The delay, or 'order', of the drift filter. This controls the number of
+        #   samples required to make a trigger detection. Can be 1 or 2, the default
+        #   is 2.
+        #buzz_filter_cutoff_frequency: 100.0
+        #   The value is a frequency, in Hz, above which high frequency noise in the
+        #   load cell will be igfiltered outnored. This option requires the SciPy
+        #   library. Default: None
+        #buzz_filter_delay: 2
+        #   The delay, or 'order', of the buzz filter. This controls the number of
+        #   samples required to make a trigger detection. Can be 1 or 2, the default
+        #   is 2.
+        #notch_filter_frequencies: 50
+        #   1 or 2 frequencies, in Hz, to filter out of the load cell data. This is
+        #   intended to reject power line noise. This option requires the SciPy
+        #   library.  Default: None
+        #notch_filter_quality: 2.0
+        #   Controls how narrow the range of frequencies are that the notch filter
+        #   removes. Larger numbers produce a narrower filter. Minimum value is 0.5 and
+        #   maximum is 3.0. Default: 2.0
+        tare_time: 0.08
+        #   The rime in seconds used for taring the load_cell before each probe. The
+        #   default value is: 4 / 60 = 0.066. This collects samples from 4 cycles of
+        #   60Hz mains power to cancel power line noise.
+        z_offset: 0
+        speed: 50
+        samples: 1
+        sample_retract_dist: 20
+        lift_speed: 10
+        #samples_result:
+        #samples_tolerance:
+        #samples_tolerance_retries:
+        #activate_gcode:
+        #deactivate_gcode:
+        #   See the "[probe]" section for a description of the above parameters.
 
-    [load_cell_probe]
-    sensor_type: hx711
-    dout_pin: EBB42:PB3
-    sclk_pin: EBB42:PB4
-    gain: A-128
-    sample_rate: 80
-    #counts_per_gram: 73039
-    counts_per_gram = 8945.79000
-    reference_tare_counts = -481936
-    force_safety_limit: 700
-    trigger_force: 75
-    tare_time: 0.08
-    z_offset: 0
-    speed: 50
-    samples: 1
-    sample_retract_dist: 20
-    lift_speed: 10
-    #samples_result:
-    #samples_tolerance:
-    #samples_tolerance_retries:
-    #activate_gcode:
-    #deactivate_gcode:
 # Force move and homing override
     [force_move]
     enable_force_move: True
