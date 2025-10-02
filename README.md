@@ -1,3 +1,12 @@
+# Các lệnh qua consol của Klipper:
+                 LOAD_CELL_DIAGNOSTIC
+
+                 LOAD_CELL_READ
+
+                 LOAD_CELL_TARE
+
+                 
+
 # Using 1kg load cell with hx711 24 bits ADC, channel A+A-
 
 # Load cell Probe
